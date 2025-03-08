@@ -9,6 +9,7 @@ namespace LUS {
 
 class Android {
   public:
+    static void exitApp();
     static void ImGuiProcessEvent(bool wantsTextInput);
     static void adjustGyro(float gyroData[3]);
     static bool IsUsingTouchscreenControls();
