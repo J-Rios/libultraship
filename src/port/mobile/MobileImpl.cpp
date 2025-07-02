@@ -46,6 +46,26 @@ void Ship::Mobile::Exit() {
     exit(0);
 }
 
+void Ship::Mobile::ToastShow(const char* message) {
+    JNIEnv* env = (JNIEnv*) SDL_AndroidGetJNIEnv();
+    jobject activity = (jobject) SDL_AndroidGetActivity();
+    if (!env || !activity) {
+        return;
+    }
+
+    jclass toastManagerClass = env->FindClass("com/dishii/soh/ToastManager");
+    jmethodID showMethod = env->GetStaticMethodID(
+        toastManagerClass,
+        "show",
+        "(Landroid/app/Activity;Ljava/lang/String;)V"
+    );
+    jstring jMessage = env->NewStringUTF(message);
+    env->CallStaticVoidMethod(toastManagerClass, showMethod, activity, jMessage);
+
+    env->DeleteLocalRef(jMessage);
+    env->DeleteLocalRef(toastManagerClass);
+}
+
 bool Ship::Mobile::IsUsingTouchscreenControls(){
     return isUsingTouchscreenControls;
 }

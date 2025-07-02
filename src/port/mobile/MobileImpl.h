@@ -11,6 +11,7 @@ class Mobile {
   public:
     static void Init();
     static void Exit();
+    static void ToastShow(const char* message);
     static void ImGuiProcessEvent(bool wantsTextInput);
     static bool IsUsingTouchscreenControls();
     static void EnableTouchArea();
