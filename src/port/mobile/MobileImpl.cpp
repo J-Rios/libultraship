@@ -38,6 +38,14 @@ void Ship::Mobile::Init() {
     // None (add here Android initialization steps)
 }
 
+void Ship::Mobile::Init(const char* appName, const uint16_t vx, const uint16_t vy, const uint16_t vz) {
+    static constexpr uint8_t MAX_MSG_TEXT_LENGHT = 64U;
+    char msgText[MAX_MSG_TEXT_LENGHT];
+    snprintf(msgText, MAX_MSG_TEXT_LENGHT, "%s v%d.%d.%d", appName, vx, vy, vz);
+    ToastShow(msgText);
+    Init();
+}
+
 void Ship::Mobile::Exit() {
     SDL_Event quit_event;
     quit_event.type = SDL_QUIT;

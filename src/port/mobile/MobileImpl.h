@@ -10,6 +10,7 @@ namespace Ship {
 class Mobile {
   public:
     static void Init();
+    static void Init(const char* appName, const uint16_t vx, const uint16_t vy, const uint16_t vz);
     static void Exit();
     static void ToastShow(const char* message);
     static void ImGuiProcessEvent(bool wantsTextInput);
